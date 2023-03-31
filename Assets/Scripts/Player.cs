@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
         if(moveDir != Vector3.zero)
         {
             lastInteractDir = moveDir;
+
         }
 
         float interactDistance = 2f;
