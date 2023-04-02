@@ -11,7 +11,6 @@ public class StoveCounter : BaseCounter
     private float fryingTimer;
     private FryingRecipeSO fryingRecipeSO;
     private BurningRecipeSO burningRecipeSO;
-    private State state;
     private float burningTimer;
     private enum State
     {
@@ -21,6 +20,7 @@ public class StoveCounter : BaseCounter
         Burned,
     }
 
+    private State state;
 
     private void Start()
     {
