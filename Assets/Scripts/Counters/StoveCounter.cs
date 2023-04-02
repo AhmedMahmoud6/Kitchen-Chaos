@@ -11,6 +11,7 @@ public class StoveCounter : BaseCounter
     private float fryingTimer;
     private FryingRecipeSO fryingRecipeSO;
     private BurningRecipeSO burningRecipeSO;
+    private State state;
     private float burningTimer;
     private enum State
     {
@@ -20,7 +21,6 @@ public class StoveCounter : BaseCounter
         Burned,
     }
 
-    private State state;
 
     private void Start()
     {
@@ -29,40 +29,43 @@ public class StoveCounter : BaseCounter
 
     private void Update()
     {
-        switch(state)
+        if (HasKitchenObject())
         {
-            case State.Idle:
+            switch (state)
+            {
+                case State.Idle:
+                    break;
+                case State.Frying:
+                    fryingTimer += Time.deltaTime;
+                    if (fryingTimer > fryingRecipeSO.fryingTimerMax)
+                    {
+                        // Fried
+                        GetKitchenObject().DestroySelf();
 
-                break;
-            case State.Frying:
-                fryingTimer += Time.deltaTime;
-                if (fryingTimer > fryingRecipeSO.fryingTimerMax)
-                {
-                    // Fried
-                    GetKitchenObject().DestroySelf();
+                        KitchenObject.SpawnKitchenObject(fryingRecipeSO.output, this);
+                        Debug.Log("Object Fried!");
 
-                    KitchenObject.SpawnKitchenObject(fryingRecipeSO.output, this);
+                        state = State.Fried;
+                        burningTimer = 0f;
+                        burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
+                    }
+                    break;
+                case State.Fried:
+                    burningTimer += Time.deltaTime;
+                    if (burningTimer > burningRecipeSO.burningTimerMax)
+                    {
+                        // Fried
+                        GetKitchenObject().DestroySelf();
 
-                    state = State.Fried;
-                    burningTimer = 0f;
-                    burningRecipeSO = GetBurningRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
-                }
-                break;
-            case State.Fried:
-                burningTimer += Time.deltaTime;
-                if (burningTimer > burningRecipeSO.burningTimerMax)
-                {
-                    // Fried
-                    GetKitchenObject().DestroySelf();
-
-                    KitchenObject.SpawnKitchenObject(burningRecipeSO.output, this);
-
-                    state = State.Burned;
-                }
-                break;
-            case State.Burned:
-
-                break;
+                        KitchenObject.SpawnKitchenObject(burningRecipeSO.output, this);
+                        Debug.Log("Object Burned!");
+                        state = State.Burned;
+                    }
+                    break;
+                case State.Burned:
+                    break;
+            }
+            Debug.Log(state);
         }
     }
     public override void Interact(Player player)
