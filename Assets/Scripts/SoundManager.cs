@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private const string PLAYER_PREFS_SOUND_EFFECTS_VOLUME = "SoundEffectsVolume";
+    private const string PLAYER_PREFS_SOUND_EFFECTS_VOLUME = "SOundEffectsVolume";
     public static SoundManager Instance { get; private set; }
 
     [SerializeField] private AudioClipRefsSO audioClipRefsSO;
@@ -79,7 +79,7 @@ public class SoundManager : MonoBehaviour
     public void ChangeVolume()
     {
         volume += .1f;
-        if(volume > 1f)
+        if (volume > 1f)
         {
             volume = 0f;
         }
