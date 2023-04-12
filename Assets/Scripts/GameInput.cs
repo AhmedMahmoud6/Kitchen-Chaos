@@ -27,7 +27,7 @@ public class GameInput : MonoBehaviour
         Pause,
         Gamepad_Interact,
         Gamepad_InteractAlternate,
-        Gampad_Pause,
+        Gamepad_Pause,
     }
 
     private void Awake()
@@ -109,7 +109,7 @@ public class GameInput : MonoBehaviour
                 return playerInputActions.Player.Interact.bindings[1].ToDisplayString();
             case Binding.Gamepad_InteractAlternate:
                 return playerInputActions.Player.InteractAlternate.bindings[1].ToDisplayString();
-            case Binding.Gampad_Pause:
+            case Binding.Gamepad_Pause:
                 return playerInputActions.Player.Pause.bindings[1].ToDisplayString();
         }
     }
@@ -161,7 +161,7 @@ public class GameInput : MonoBehaviour
                 inputAction = playerInputActions.Player.InteractAlternate;
                 bindingIndex = 1;
                 break;
-            case Binding.Gampad_Pause:
+            case Binding.Gamepad_Pause:
                 inputAction = playerInputActions.Player.Pause;
                 bindingIndex = 1;
                 break;
@@ -176,6 +176,9 @@ public class GameInput : MonoBehaviour
                 PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
                 PlayerPrefs.Save();
             })
-        .Start();
+            .Start();
     }
+
+
+
 }

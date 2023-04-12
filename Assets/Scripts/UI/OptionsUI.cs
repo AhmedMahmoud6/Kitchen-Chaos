@@ -62,7 +62,7 @@ public class OptionsUI : MonoBehaviour
         pauseButton.onClick.AddListener(() =>{ RebindBinding(GameInput.Binding.Pause);});
         gamepadInteractButton.onClick.AddListener(() => { RebindBinding(GameInput.Binding.Gamepad_Interact); });
         gamepadInteractAlternateButton.onClick.AddListener(() => { RebindBinding(GameInput.Binding.Gamepad_InteractAlternate); });
-        gamepadPauseButton.onClick.AddListener(() => { RebindBinding(GameInput.Binding.Gampad_Pause); });
+        gamepadPauseButton.onClick.AddListener(() => { RebindBinding(GameInput.Binding.Gamepad_Pause); });
     }
     private void Start()
     {
@@ -91,7 +91,7 @@ public class OptionsUI : MonoBehaviour
         pauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Pause);
         gamepadInteractText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_Interact);
         gamepadInteractAlternateText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_InteractAlternate);
-        gamepadPauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gampad_Pause);
+        gamepadPauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Gamepad_Pause);
     }
 
     public void Show(Action onCloseButtonAction)

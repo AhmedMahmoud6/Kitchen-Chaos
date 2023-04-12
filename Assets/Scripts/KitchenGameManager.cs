@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class KitchenGameManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class KitchenGameManager : MonoBehaviour
     public event EventHandler OnStateChanged;
     public event EventHandler OnGamePaused;
     public event EventHandler OnGameUnPaused;
+
+
+    [SerializeField] private GameInput gameInput;
 
 
     private enum State
@@ -111,13 +115,13 @@ public class KitchenGameManager : MonoBehaviour
         if(isGamePaused)
         {
             Time.timeScale = 0f;
-
             OnGamePaused?.Invoke(this, EventArgs.Empty);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
         }
         else
         {
             Time.timeScale = 1f;
-
             OnGameUnPaused?.Invoke(this, EventArgs.Empty);
         }
     }
