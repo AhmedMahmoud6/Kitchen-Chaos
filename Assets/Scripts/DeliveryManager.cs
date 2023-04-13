@@ -30,7 +30,7 @@ public class DeliveryManager : MonoBehaviour
         spawnRecipeTimer -= Time.deltaTime;
         if (spawnRecipeTimer <= 0f)
         {
-            if(waitingRecipeSOList.Count < waitingRecipeMax)
+            if(KitchenGameManager.Instance.IsGamePlaying() && waitingRecipeSOList.Count < waitingRecipeMax)
             {
                 spawnRecipeTimer = spawnRecipeTimerMax;
 
