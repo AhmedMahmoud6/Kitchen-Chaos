@@ -7,7 +7,7 @@ public class CarMotion : MonoBehaviour
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float stopPosition = -6f;
     [SerializeField] private float destroyPosition = 36f;
-    [SerializeField] private GameObject objectToSpawn;
+    [SerializeField] private GameObject[] objectsToSpawn;
     [SerializeField] private Vector3 spawnPosition;
 
     private bool deliverySuccess = false;
@@ -15,34 +15,38 @@ public class CarMotion : MonoBehaviour
     private void Start()
     {
         DeliveryManager.Instance.OnRecipeSuccess += DeliveryManager_OnRecipeSuccess;
-        spawnedObject = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+        int randomIndex = Random.Range(0, objectsToSpawn.Length); // generate a random index
+        spawnedObject = Instantiate(objectsToSpawn[randomIndex], spawnPosition, Quaternion.identity); // initialize the spawnedObject variable
     }
 
     private void DeliveryManager_OnRecipeSuccess(object sender, System.EventArgs e)
     {
+        Debug.Log("DeliveryManager_OnRecipeSuccess Fired!!!!!");
         deliverySuccess = true;
         speed = 10.0f;
+        int randomIndex = Random.Range(0, objectsToSpawn.Length); // generate a random index
+        spawnedObject = Instantiate(objectsToSpawn[randomIndex], spawnPosition, Quaternion.identity); // instantiate a random prefab from the array
+
     }
 
     void Update()
     {
+        if (spawnedObject != null)
+        {
+            if (spawnedObject.transform.position.z >= stopPosition && spawnedObject.transform.position.z < destroyPosition)
+            {
+                speed = 0.0f;
+            }
 
-        if(spawnedObject.transform.position.z >= stopPosition && !deliverySuccess )
-        {
-            speed = 0.0f;
-        }
+            if (spawnedObject.transform.position.z >= destroyPosition)
+            {
+                int randomIndex = Random.Range(0, objectsToSpawn.Length); // generate a random index
+                Destroy(spawnedObject.gameObject);
+                spawnedObject = Instantiate(objectsToSpawn[randomIndex], spawnPosition, Quaternion.identity);
+            }
 
-        if(spawnedObject.transform.position.z >= destroyPosition)
-        {
-            Destroy(spawnedObject.gameObject);
-            deliverySuccess = false;
-            spawnedObject = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
-        }
-        if (spawnedObject != null) // if the prefab is instantiated
-        {
             spawnedObject.transform.Translate(Vector3.forward * speed * Time.deltaTime); // move the prefab forward
         }
-
     }
 
 

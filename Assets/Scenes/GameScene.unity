@@ -10584,8 +10584,12 @@ MonoBehaviour:
   speed: 10
   stopPosition: 0
   destroyPosition: 36
-  objectToSpawn: {fileID: 5352112619491041860, guid: aa71d9df118fc154a858babad5b1a66f,
-    type: 3}
+  objectsToSpawn:
+  - {fileID: 5352112619491041860, guid: aa71d9df118fc154a858babad5b1a66f, type: 3}
+  - {fileID: 8934234302468195902, guid: 40b5728c9a8fc364cbfbaadcdeb1af64, type: 3}
+  - {fileID: 5285174987729393547, guid: 788f99c0acce4384a91a6c213fb34068, type: 3}
+  - {fileID: 605829141515277775, guid: 8784cee67cb5a1245bc4e15c7df8d321, type: 3}
+  - {fileID: 6352616002136992155, guid: b2788c42126f14248ab2fdd78705c4d0, type: 3}
   spawnPosition: {x: 13.25, y: 0, z: -31.01}
 --- !u!4 &1295689745
 Transform:
