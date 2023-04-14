@@ -2854,7 +2854,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.40027368, y: 0.000000047855103, z: -0.000000020902693, w: 0.91639566}
+  m_LocalRotation: {x: 0.40027365, y: -0.000000007244687, z: 0.000000003164414, w: 0.91639566}
   m_LocalPosition: {x: 0.78, y: 21.85, z: -21.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8855,18 +8855,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e766e3ac0dfc71f40a17abb6dffc7459,
         type: 3}
+      propertyPath: m_LocalScale.z
+      value: 107.83
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e766e3ac0dfc71f40a17abb6dffc7459,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.554444
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e766e3ac0dfc71f40a17abb6dffc7459,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.20445633
+      value: -0.2045
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e766e3ac0dfc71f40a17abb6dffc7459,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1711421
+      value: -2.4368
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e766e3ac0dfc71f40a17abb6dffc7459,
         type: 3}
@@ -10556,6 +10561,7 @@ GameObject:
   - component: {fileID: 1295689745}
   - component: {fileID: 1295689744}
   - component: {fileID: 1295689746}
+  - component: {fileID: 1295689747}
   m_Layer: 0
   m_Name: Viechels
   m_TagString: Untagged
@@ -10578,8 +10584,6 @@ MonoBehaviour:
   speed: 10
   stopPosition: 0
   destroyPosition: 36
-  nextSpawnTime: 0
-  spawnInterval: 1
   objectToSpawn: {fileID: 5352112619491041860, guid: aa71d9df118fc154a858babad5b1a66f,
     type: 3}
   spawnPosition: {x: 13.25, y: 0, z: -31.01}
@@ -10625,6 +10629,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1295689747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295689743}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1302544716
 GameObject:
   m_ObjectHideFlags: 0
@@ -13290,7 +13315,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613251903}
-  m_LocalRotation: {x: 0.40027368, y: 0.000000047855103, z: -0.000000020902693, w: 0.91639566}
+  m_LocalRotation: {x: 0.40027365, y: -0.000000007244687, z: 0.000000003164414, w: 0.91639566}
   m_LocalPosition: {x: 0.78, y: 21.85, z: -21.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
