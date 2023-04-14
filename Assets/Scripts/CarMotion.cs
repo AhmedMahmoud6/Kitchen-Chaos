@@ -24,29 +24,30 @@ public class CarMotion : MonoBehaviour
         Debug.Log("DeliveryManager_OnRecipeSuccess Fired!!!!!");
         deliverySuccess = true;
         speed = 10.0f;
-        int randomIndex = Random.Range(0, objectsToSpawn.Length); // generate a random index
-        spawnedObject = Instantiate(objectsToSpawn[randomIndex], spawnPosition, Quaternion.identity); // instantiate a random prefab from the array
-
     }
 
     void Update()
     {
-        if (spawnedObject != null)
+        if (KitchenGameManager.Instance.IsGamePlaying())
         {
-            if (spawnedObject.transform.position.z >= stopPosition && spawnedObject.transform.position.z < destroyPosition)
+            if (spawnedObject != null)
             {
-                speed = 0.0f;
-            }
+                if (spawnedObject.transform.position.z >= stopPosition && !deliverySuccess)
+                {
+                    speed = 0.0f;
+                }
 
-            if (spawnedObject.transform.position.z >= destroyPosition)
-            {
-                int randomIndex = Random.Range(0, objectsToSpawn.Length); // generate a random index
-                Destroy(spawnedObject.gameObject);
-                spawnedObject = Instantiate(objectsToSpawn[randomIndex], spawnPosition, Quaternion.identity);
+                if (spawnedObject.transform.position.z >= destroyPosition)
+                {
+                    deliverySuccess = false;
+                    int randomIndex = Random.Range(0, objectsToSpawn.Length); // generate a random index
+                    Destroy(spawnedObject.gameObject);
+                    spawnedObject = Instantiate(objectsToSpawn[randomIndex], spawnPosition, Quaternion.identity);
+                }
+                spawnedObject.transform.Translate(Vector3.forward * speed * Time.deltaTime); // move the prefab forward
             }
-
-            spawnedObject.transform.Translate(Vector3.forward * speed * Time.deltaTime); // move the prefab forward
         }
+
     }
 
 
