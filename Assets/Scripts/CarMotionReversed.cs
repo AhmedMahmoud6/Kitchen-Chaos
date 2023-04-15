@@ -14,7 +14,7 @@ public class CarMotionReversed : MonoBehaviour
     {
         int randomIndex = Random.Range(0, objectsToSpawn.Length); // generate a random index
         spawnedObject = Instantiate(objectsToSpawn[randomIndex], spawnPosition, Quaternion.Euler(0, 180, 0)); // initialize the spawnedObject variable
-        speed = Random.Range(10,21);
+        speed = Random.Range(10,31);
     }
 
     void Update()
@@ -29,7 +29,7 @@ public class CarMotionReversed : MonoBehaviour
                     int randomIndex = Random.Range(0, objectsToSpawn.Length); // generate a random index
                     Destroy(spawnedObject.gameObject);
                     spawnedObject = Instantiate(objectsToSpawn[randomIndex], spawnPosition, Quaternion.Euler(0,180,0));
-                    speed = Random.Range(10, 21);
+                    speed = Random.Range(10, 31);
                 }
                 spawnedObject.transform.Translate(Vector3.forward * speed * Time.deltaTime); // move the prefab forward
             }
