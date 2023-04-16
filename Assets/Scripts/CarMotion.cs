@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class CarMotion : MonoBehaviour
 {
+    public static CarMotion Instance { get; private set; }
+    
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float stopPosition = -6f;
     [SerializeField] private float destroyPosition = 36f;
     [SerializeField] private GameObject[] objectsToSpawn;
     [SerializeField] private Vector3 spawnPosition;
 
-    private bool deliverySuccess = false;
+    public bool deliverySuccess = false;
     private GameObject spawnedObject; // reference to the instantiated object
     private void Start()
     {
+        Instance = this;
         DeliveryManager.Instance.OnRecipeSuccess += DeliveryManager_OnRecipeSuccess;
         int randomIndex = Random.Range(0, objectsToSpawn.Length); // generate a random index
         spawnedObject = Instantiate(objectsToSpawn[randomIndex], spawnPosition, Quaternion.identity); // initialize the spawnedObject variable
